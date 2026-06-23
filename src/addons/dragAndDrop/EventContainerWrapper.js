@@ -145,6 +145,9 @@ class EventContainerWrapper extends React.Component {
 
   _calculateDnDEnd = (start) => {
     const { accessors, slotMetrics, localizer } = this.props
+    if (!this.context.draggable.dragFromOutsideItem) {
+      return slotMetrics.nextSlot(start)
+    }
     const event = this.context.draggable.dragFromOutsideItem()
     const { duration: eventDuration } = eventTimes(event, accessors, localizer)
 
